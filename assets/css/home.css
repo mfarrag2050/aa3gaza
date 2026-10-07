@@ -149,8 +149,8 @@ body.home .bar{background:var(--ash);border-bottom-color:var(--dust)}
 .gal-i .a{top:calc(50% + 10px)}
 .gal-foot{font-size:14px;color:var(--mute);margin:12px 0 0}
 /* infographics: fixed-height strip, so adding items never changes the page height */
-.igs .wrap{padding-top:0}
-.igal{border-top:0}
+.chapter.igs{padding:16px 0 0}
+.igal{border-top:1px solid var(--dust);padding:40px 0 48px}
 .ig-i{flex:none;margin:0;scroll-snap-align:start;width:min-content}
 .ig-i a{display:block;color:var(--ink);text-decoration:none}
 .ig-i .im{display:block;height:460px;max-width:86vw;background:#cfcbc4;overflow:hidden}
@@ -163,7 +163,8 @@ body.home .bar{background:var(--ash);border-bottom-color:var(--dust)}
 
 /* inside an iframe on aa.com.tr that grows to fit the page (host script answered): no viewport-tall hero, no sticky bar */
 .autoh .hero{min-height:720px}
-.framed .bar,.framed .foot{display:none}   /* embedded on aa.com.tr: the AA page has its own header, and in-page links cannot scroll it */
+.framed .bar,.framed .foot{display:none}
+html.framed{background:#fff}   /* height reserve under the content blends into the white AA page */   /* embedded on aa.com.tr: the AA page has its own header, and in-page links cannot scroll it */
 
 /* footer */
 body.home .foot{border-top-color:var(--dust);margin-top:48px}

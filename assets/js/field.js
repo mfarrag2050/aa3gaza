@@ -251,22 +251,16 @@
   });
 
   if (framed) {
-    // handshake: say hello; only a host page running our embed script answers, then we grow the frame to fit
-    let last = 0, on = false;
-    const report = () => { if (!on) return; const h = Math.ceil(document.documentElement.getBoundingClientRect().height); if (Math.abs(h - last) > 2) { last = h; post({ type: 'height', h }); } };
-    addEventListener('message', (ev) => {
-      if (!ev.data || ev.data.aagaza !== 'host' || on) return;
-      on = true;
-      document.documentElement.classList.add('autoh');
-      if (host && plan) { cancelAnimationFrame(raf); heroStatic(); host.querySelector('[data-count]').textContent = new Intl.NumberFormat('en-US').format(plan.N); }
-      new ResizeObserver(report).observe(document.documentElement); report();
-    });
-    post({ type: 'hello' }); addEventListener('load', () => post({ type: 'hello' }));
-    document.addEventListener('click', (ev) => {        // in-page links: the host page does the scrolling
-      if (!on) return;
+    // inside an aa.com.tr page: lay out for a frame that grows to fit, and keep telling the host our height
+    document.documentElement.classList.add('autoh');
+    let last = 0;
+    const report = () => { const h = Math.ceil(document.documentElement.getBoundingClientRect().height); if (Math.abs(h - last) > 2) { last = h; post({ type: 'height', h }); } };
+    new ResizeObserver(report).observe(document.documentElement);
+    addEventListener('load', report); report();
+    addEventListener('message', (ev) => { if (ev.data && ev.data.aagaza === 'host') { last = 0; report(); } });   // host asks again
+    document.addEventListener('click', (ev) => {        // in-page links: ask the host page to scroll there
       const a = ev.target.closest('a[href^="#"]'); if (!a) return;
       const t = document.querySelector(a.getAttribute('href')); if (!t) return;
-      ev.preventDefault();
       post({ type: 'scroll', y: Math.max(0, t.getBoundingClientRect().top + window.scrollY - 10) });
     });
   }

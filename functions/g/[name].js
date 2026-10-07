@@ -6,6 +6,7 @@ export async function onRequest({ params, request }) {
   const name = String(params.name || '');
   let url, m;
   if (SRC.photo.test(name)) url = 'https://web-cdnprod.aa.com.tr/uploads/PhotoGallery/2026/10/07/' + name;
+  else if ((m = name.match(/^pg_(\d{4})(\d{2})(\d{2})_([0-9a-f]{32})\.jpg$/))) url = `https://web-cdnprod.aa.com.tr/uploads/PhotoGallery/${m[1]}/${m[2]}/${m[3]}/thumbs_b2_${m[4]}.jpg`;
   else if ((m = name.match(/^ig_(\d{4})(\d{2})(\d{2})_([0-9a-f]{32})\.jpg$/))) url = `https://web-cdnprod.aa.com.tr/uploads/InfoGraphic/${m[1]}/${m[2]}/${m[3]}/${m[4]}.jpg`;
   else if (name === 'aa-logo.png') url = 'https://www.aa.com.tr/images/black-logo.png';
   else return new Response('Not found', { status: 404 });

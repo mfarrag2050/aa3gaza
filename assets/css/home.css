@@ -112,7 +112,11 @@ body.home .bar{background:var(--ash);border-bottom-color:var(--dust)}
 .kids-what{font-size:clamp(19px,1.8vw,24px);line-height:1.75;margin:0;max-width:24em}
 .kids .key{color:#BDB8B0}
 .kids .key i{background:var(--paper)}
-.kids .facts{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:40px}
+.kids .facts{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:32px}
+.kids-body{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:48px;align-items:start}
+.kids-vid p{font-size:14px;line-height:1.7;color:#BDB8B0;margin:10px 0 0}
+.kids .vid-open{background:var(--paper);color:var(--ink)}
+.kids .vid{outline:1px solid #3a3936}
 .kids .facts div{border-top-color:#3a3936}
 .kids-foot{font-size:14px;color:#BDB8B0;margin:26px 0 0}
 .kids-foot a{color:var(--paper);text-decoration:underline;text-underline-offset:5px}
@@ -129,6 +133,8 @@ body.home .foot,body.home .foot span{color:var(--mute)}
   .bares .story+.story{border-top:1px solid var(--dust)}
   .kids-head{grid-template-columns:1fr;gap:12px}
   .kids .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kids-body{grid-template-columns:1fr;gap:28px}
+  .kids-vid{max-width:300px}
 }
 @media (max-width:700px){
   /* phones: the whole hero fits one screen, and the page stays short */

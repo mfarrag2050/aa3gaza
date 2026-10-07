@@ -144,7 +144,7 @@ body.home .bar{background:var(--ash);border-bottom-color:var(--dust)}
 
 /* inside an iframe on aa.com.tr that grows to fit the page (host script answered): no viewport-tall hero, no sticky bar */
 .autoh .hero{min-height:720px}
-.autoh .bar{position:relative}
+.framed .bar{display:none}   /* embedded on aa.com.tr: the AA page has its own header, and in-page links cannot scroll it */
 
 /* footer */
 body.home .foot{border-top-color:var(--dust);margin-top:48px}

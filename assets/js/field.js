@@ -223,7 +223,7 @@
   const first = (fig) => fig.querySelector('.vitem:not([hidden]) [data-src]') || fig.querySelector('[data-src]');
   const figs = [...document.querySelectorAll('.vid')].filter((f) => f.querySelector('[data-src]'));
   const openAll = () => figs.forEach((f) => load(first(f)));
-  if (matchMedia('(min-width: 701px)').matches) openAll();
+  if (framed || matchMedia('(min-width: 701px)').matches) openAll();   // embedded: no tap-to-open, so the page height stays fixed
   else matchMedia('(min-width: 701px)').addEventListener('change', (q) => { if (q.matches) openAll(); });
   document.querySelectorAll('.vid-open').forEach((b) => b.addEventListener('click', () => load(first(b.closest('.vid')))));
   // tabs: show one video, pause the rest

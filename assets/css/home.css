@@ -54,6 +54,8 @@ body.home .bar{background:var(--ash);border-bottom-color:var(--dust)}
 .vid.ig iframe{height:100%}
 .vid-open{display:none}
 .vid.sq{aspect-ratio:1/1}
+.clip{margin:28px 0 0;max-width:340px}
+.clip video{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:var(--ink)}
 /* several videos for one story: tabs above, one video at a time */
 .vid.multi{aspect-ratio:auto;background:none}
 .vtabs{display:flex;gap:18px;border-bottom:1px solid var(--dust);margin-bottom:12px}
@@ -119,6 +121,7 @@ body.home .bar{background:var(--ash);border-bottom-color:var(--dust)}
 body.home .foot{border-top-color:var(--dust);margin-top:48px}
 body.home .foot,body.home .foot span{color:var(--mute)}
 
+
 @media (max-width:900px){
   .story{grid-template-columns:minmax(0,1fr) 326px;grid-template-areas:"t v" "s s";gap:34px 32px}
   .story.nov{grid-template-columns:1fr;grid-template-areas:"t" "s"}
@@ -153,24 +156,6 @@ body.home .foot,body.home .foot span{color:var(--mute)}
     font:700 15px/1 var(--kufi);padding:12px 18px 12px 16px}
   .vid-open svg{width:16px;height:16px}
   .vid.on .vid-open{display:none}
-.vid.sq{aspect-ratio:1/1}
-/* several videos for one story: tabs above, one video at a time */
-.vid.multi{aspect-ratio:auto;background:none}
-.vtabs{display:flex;gap:18px;border-bottom:1px solid var(--dust);margin-bottom:12px}
-.vtabs button{font:700 14px/1 var(--kufi);color:var(--mute);background:none;border:0;border-bottom:3px solid transparent;
-  padding:6px 0 10px;margin-bottom:-1px;cursor:pointer}
-.vtabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
-.vitem{aspect-ratio:9/16;background:var(--ink)}
-.vitem.ig{aspect-ratio:auto;height:616px;background:#fff}
-.vitem[hidden]{display:none}
-.vitem video,.vitem iframe{display:block;width:100%;height:100%;border:0;object-fit:cover}
-.clip{margin:28px 0 0;max-width:340px}
-.clip video{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:var(--ink)}
-/* X (Twitter) post: the widget sizes itself */
-.vid.x{aspect-ratio:auto;background:none}
-.xpost{min-height:200px}
-.xpost>a{display:block;padding:14px;border:1px solid var(--dust);font:700 14px var(--kufi)}
-.xpost .twitter-tweet{margin:0!important}
   .chapter{padding-top:56px}
   .ch-head{margin-bottom:24px}
   .story{padding:36px 0}

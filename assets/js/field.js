@@ -59,7 +59,7 @@
     const pad = W < 700 ? 10 : 18;
     const hole = { l: r.left - hr.left - pad, t: r.top - hr.top - pad, r: r.right - hr.left + pad, b: r.bottom - hr.top + pad };
     const holeA = (hole.r - hole.l) * (hole.b - hole.t);
-    const minP = Math.max(2 / d, +c.dataset.minp || (W < 700 ? 1.4 : 5)), grow = c.dataset.grow !== '0';
+    const minP = Math.max(2 / d, +c.dataset.minp || (W < 700 ? 1.4 : 4)), grow = c.dataset.grow !== '0';
     const build = (p) => {
       const cols = Math.floor(W / p), off = snap((W - cols * p) / 2, d), xs = new Float32Array(N), ys = new Float32Array(N);
       let i = 0, y = 0;

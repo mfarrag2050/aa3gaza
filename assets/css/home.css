@@ -28,6 +28,7 @@ body.home .bar{background:var(--ash);border-bottom-color:var(--dust)}
   gap:clamp(28px,3vw,40px);padding:44px 0;border-top:1px solid var(--dust)}
 .story>.st{grid-area:t}.story>.vid{grid-area:v}.story>.sv{grid-area:s}
 .st .kind{font-size:14px;color:var(--mute);margin:0 0 6px}
+.st .kind span{margin-inline-start:12px;padding-inline-start:12px;border-inline-start:1px solid var(--dust)}
 .st h3{font:700 22px/1.65 var(--kufi);margin:0 0 14px}
 .st h3 a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:7px}
 .pts{list-style:none;margin:0 0 18px;padding:0}
@@ -151,6 +152,11 @@ body.home .bar{background:var(--ash);border-bottom-color:var(--dust)}
 .gal-i .a{top:calc(50% + 10px)}
 .gal-foot{font-size:14px;color:var(--mute);margin:12px 0 0}
 .st-viz{margin-top:32px}
+.gal.long .gal-head h3{font-size:clamp(24px,2.6vw,34px)}
+.credits{border-top:1px solid var(--dust);padding:28px 0 36px}
+.credits p{margin:0 0 6px;font-size:15px;line-height:1.8;color:var(--mute)}
+.credits b{font:800 16px/1.6 var(--kufi);color:var(--ink)}
+.credits span{display:inline-block;min-width:150px;font:700 14px/1.8 var(--kufi);color:var(--ink)}
 .tl h4{font:800 19px/1.4 var(--kufi);margin:0 0 14px}
 .tl ol{list-style:none;margin:0 0 26px;padding:0;border-inline-start:2px solid var(--ink)}
 .tl li{position:relative;padding:0 18px 14px 0}

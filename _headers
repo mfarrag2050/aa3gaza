@@ -1,0 +1,4 @@
+/*
+  Content-Security-Policy: frame-ancestors 'self' https://aa.com.tr https://*.aa.com.tr
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Content-Type-Options: nosniff

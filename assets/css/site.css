@@ -1,0 +1,115 @@
+/* 3 سنوات من الإبادة — الأناضول. Styled after aa.com.tr/ar article pages. */
+:root{
+  --ink:#000; --text:#363636; --spot:#494949; --muted:#6b6b6b; --line:#e5e5e5;
+  --bar:#fbfbfb; --soft:#f5f5f5; --red:#ED1C24;
+  --w-text:780px; --w-wide:1180px;
+  --ash:#E4E2DE; --paper:#F6F5F2; --dust:#BDB8B0; --rubble:#8C877F; --mute:#55524D;
+  --kufi:"Noto Kufi Arabic",Tahoma,Arial,sans-serif;
+  --naskh:"Noto Naskh Arabic","Times New Roman",serif;
+  --font:var(--naskh);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#fff;color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--w-wide);margin:0 auto;padding:0 16px}
+.narrow{max-width:var(--w-text);margin:0 auto;padding:0 16px}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:10;background:var(--paper);border-bottom:1px solid var(--line);font-family:var(--kufi)}
+.bar .wrap{display:flex;align-items:center;gap:14px;height:60px}
+.bar .logo,.bar .back,.menu-m{flex:none}
+.bar .series{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.bar .logo img{width:40px;height:40px}
+.bar .series{font-weight:700;font-size:16px;padding-inline-start:14px;border-inline-start:1px solid #d6d6d6;white-space:nowrap}
+.bar .series small{display:block;font-family:var(--naskh);font-weight:400;font-size:13px;color:var(--muted);line-height:1.2}
+.bar .back{margin-inline-start:18px;display:inline-flex;align-items:center;gap:8px;background:#000;color:#fff;
+  padding:7px 14px;font-size:13px;font-weight:700;white-space:nowrap}
+.bar .back svg{width:15px;height:15px}
+.bar .back:hover{background:#2b2b2b}
+
+/* chapter menu in the bar */
+.menu{margin-inline-start:auto;display:flex;align-items:center;gap:22px;height:100%}
+.menu a{font:700 14px/1 var(--kufi);color:var(--mute);height:100%;display:flex;align-items:center;border-bottom:3px solid transparent;padding-top:3px}
+.menu a:hover{color:#000}
+.menu a[aria-current]{color:#000;border-bottom-color:#000}
+.menu-m{display:none;margin-inline-start:auto;position:relative}
+.menu-m summary{list-style:none;cursor:pointer;font:700 14px/1 var(--kufi);padding:9px 12px;border:1px solid #000}
+.menu-m summary::-webkit-details-marker{display:none}
+.menu-m summary::after{content:"";display:inline-block;width:0;height:0;margin-inline-start:8px;vertical-align:2px;
+  border-inline:5px solid transparent;border-top:6px solid currentColor}
+.menu-m[open] summary::after{transform:rotate(180deg)}
+.menu-m nav{position:absolute;inset-inline-end:0;top:calc(100% + 10px);min-width:190px;background:var(--paper);border:1px solid #000;display:flex;flex-direction:column}
+.menu-m nav a{font:700 15px/1 var(--kufi);padding:15px 18px;border-top:1px solid var(--line)}
+.menu-m nav a:first-child{border-top:0}
+.menu-m nav a[aria-current]{background:#000;color:#fff}
+@media (max-width:1000px){.menu{display:none}.menu-m{display:block}}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 16px}
+.chip{display:inline-block;padding:5px 12px;font-family:var(--kufi);font-weight:700;font-size:13px;line-height:1.4;background:#000;color:#fff}
+.chip.ghost{background:#fff;color:#000;border:1px solid #000}
+
+/* article head */
+h1.title{font-family:var(--kufi);font-size:38px;line-height:1.55;font-weight:800;margin:0 0 14px}
+.spot{font-size:22px;line-height:1.6;color:var(--spot);margin:0 0 16px}
+.meta{font-size:14px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 14px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.meta b{color:#000;font-weight:500}
+
+/* media slots */
+.hero{margin:24px 0}
+.hero img{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--soft)}
+.slot{aspect-ratio:16/9;width:100%;background:var(--soft);border:2px dashed #cfcfcf;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:10px;color:#8a8a8a;font-size:15px;text-align:center}
+.slot svg{width:44px;height:44px;opacity:.6}
+.slot.video{background:#111;border-color:#444;color:#bbb}
+figure{margin:0}
+figcaption{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.6}
+
+/* highlights */
+.highlights{background:var(--soft);border-inline-start:4px solid #000;padding:18px 22px;margin:24px 0}
+.highlights .intro{font-family:var(--kufi);font-weight:700;margin:0 0 8px;font-size:17px}
+.highlights ul{margin:0;padding:0;list-style:none}
+.highlights li{position:relative;padding-inline-start:18px;margin:8px 0;font-size:17px;line-height:1.7}
+.highlights li::before{content:"";position:absolute;inset-inline-start:0;top:.75em;width:7px;height:7px;background:#000}
+
+/* body */
+.dateline{font-weight:700;font-size:16px;margin:24px 0 8px}
+.body p{font-size:18px;line-height:1.9;color:var(--text);margin:0 0 18px}
+.body h2{font-family:var(--kufi);font-size:24px;line-height:1.5;margin:40px 0 14px;font-weight:700}
+.body h3{font-family:var(--kufi);font-size:19px;margin:28px 0 10px;font-weight:700}
+.body ul{margin:0 0 18px;padding-inline-start:22px}
+.body ul li{font-size:18px;line-height:1.9;color:var(--text);margin-bottom:12px}
+.body figure{margin:30px 0}
+.body figure img{width:100%;height:auto;border:1px solid var(--line)}
+
+/* article footer */
+.next{border-top:1px solid var(--line);margin-top:48px;padding-top:28px}
+.next h2{font-family:var(--kufi);font-size:19px;margin:0 0 16px}
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pager a{border:1px solid var(--line);padding:14px 16px;display:block}
+.pager a:hover{border-color:#000}
+.pager small{display:block;color:var(--muted);font-size:13px;margin-bottom:4px}
+.pager b{font-family:var(--kufi);font-size:15px;line-height:1.6}
+.pager .empty{visibility:hidden}
+
+/* footer */
+.foot{border-top:1px solid var(--line);margin-top:64px;padding:26px 0;color:var(--muted);font-size:14px}
+.foot .wrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.foot img{width:32px;height:32px}
+.foot a{color:#000;text-decoration:underline;text-underline-offset:4px}
+
+@media (max-width:600px){
+  h1.title{font-size:28px}
+  .spot{font-size:18px}
+  .body p,.body ul li{font-size:17px}
+  .body h2{font-size:22px}
+  .pager{grid-template-columns:1fr}
+  .bar .series small{display:none}
+  .bar .back span{display:none}
+  .bar .back{padding:8px 10px;margin-inline-start:8px}
+  .bar .wrap{gap:10px}
+  .bar .series{font-size:14px;padding-inline-start:10px}
+  .menu-m summary{padding:8px 10px;font-size:13px}
+}

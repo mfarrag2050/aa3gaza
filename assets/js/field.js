@@ -233,6 +233,19 @@
     }));
   });
 
+  /* gallery arrows (RTL: next goes left) */
+  document.querySelectorAll('.gal').forEach((g) => {
+    const strip = g.querySelector('.gal-strip'), prev = g.querySelector('.gal-prev'), next = g.querySelector('.gal-next');
+    const step = () => strip.clientWidth * 0.8;
+    const sync = () => {
+      const max = strip.scrollWidth - strip.clientWidth, pos = Math.abs(strip.scrollLeft);
+      prev.disabled = pos < 4; next.disabled = pos > max - 4;
+    };
+    next.addEventListener('click', () => strip.scrollBy({ left: -step(), behavior: 'smooth' }));
+    prev.addEventListener('click', () => strip.scrollBy({ left: step(), behavior: 'smooth' }));
+    strip.addEventListener('scroll', sync, { passive: true }); addEventListener('resize', sync); sync();
+  });
+
   const go = () => { drawFields(); if (host) loadPhoto().then(startHero); };
   (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(go);
 })();

@@ -23,9 +23,11 @@
     const W = Math.floor(par.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight));
     if (!W) return;
     const d = DPR();
-    let p = +(c.dataset.p || 8);
-    const fits = (p) => Math.ceil(n / Math.floor(W / p)) * p <= maxh;
-    while (p > 2.5 && !fits(p)) p -= 0.5;
+    const phone = W < 600;
+    let p = +(c.dataset.p || 8) * (phone ? 0.6 : 1);
+    const lim = phone ? Math.min(maxh, 260) : maxh, floor = phone ? Math.max(1.5, 2 / d) : 2.5;
+    const fits = (p) => Math.ceil(n / Math.floor(W / p)) * p <= lim;
+    while (p > floor && !fits(p)) p -= 0.25;
     p = snap(p, d);
     const cols = Math.floor(W / p), rows = Math.ceil(n / cols), H = rows * p;
     const off = snap((W - cols * p) / 2, d);
@@ -53,7 +55,7 @@
     const pad = W < 700 ? 10 : 18;
     const hole = { l: r.left - hr.left - pad, t: r.top - hr.top - pad, r: r.right - hr.left + pad, b: r.bottom - hr.top + pad };
     const holeA = (hole.r - hole.l) * (hole.b - hole.t);
-    const minP = Math.max(2 / d, +c.dataset.minp || (W < 700 ? 3 : 5)), grow = c.dataset.grow !== '0';
+    const minP = Math.max(2 / d, +c.dataset.minp || (W < 700 ? 1.4 : 5)), grow = c.dataset.grow !== '0';
     const build = (p) => {
       const cols = Math.floor(W / p), off = snap((W - cols * p) / 2, d), xs = new Float32Array(N), ys = new Float32Array(N);
       let i = 0, y = 0;
@@ -197,6 +199,13 @@
     im.onerror = () => res();
     im.src = src;
   });
+  /* reels: load at once on wide screens; on phones only when asked */
+  const vids = [...document.querySelectorAll('.vid [data-src]')];
+  const load = (m) => { if (m.dataset.src && !m.src) m.src = m.dataset.src; m.closest('.vid').classList.add('on'); };
+  if (matchMedia('(min-width: 701px)').matches) vids.forEach(load);
+  else matchMedia('(min-width: 701px)').addEventListener('change', (q) => { if (q.matches) vids.forEach(load); });
+  document.querySelectorAll('.vid-open').forEach((b) => b.addEventListener('click', () => load(b.parentElement.querySelector('[data-src]'))));
+
   const go = () => { drawFields(); if (host) loadPhoto().then(startHero); };
   (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(go);
 })();

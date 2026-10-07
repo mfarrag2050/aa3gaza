@@ -171,22 +171,6 @@
     }, 150);
   });
 
-  /* ---------- video goes in whichever column is shorter, so neither side is left with a hole ---------- */
-  const stories = [...document.querySelectorAll('.story:not(.bare)')].filter((a) => a.querySelector('.vid') && a.querySelector('.sv'));
-  function balance() {
-    const wide = matchMedia('(min-width: 901px)').matches;
-    stories.forEach((a) => {
-      const v = a.querySelector('.vid'), st = a.querySelector('.st'), sv = a.querySelector('.sv');
-      st.appendChild(v); a.classList.remove('vid-right', 'sv-mid');  // default: under the text
-      if (!wide) return;
-      const inSt = st.clientWidth * 9 / 16 + 34, inSv = sv.clientWidth * 9 / 16 + 44;
-      const t = st.offsetHeight - (v.offsetHeight + 34), g = sv.offsetHeight;
-      if (Math.abs(t - (g + inSv)) < Math.abs(t + inSt - g)) { sv.appendChild(v); a.classList.add('vid-right'); }
-      else if (st.offsetHeight - g > 80) a.classList.add('sv-mid');   // a short figure sits level with the text block
-    });
-  }
-  addEventListener('resize', () => { clearTimeout(balance.t); balance.t = setTimeout(balance, 150); });
-
   /* ---------- chapter rail: mark the chapter in view ---------- */
   const links = [...document.querySelectorAll('.menu a, .menu-m a')];
   if (links.length) {
@@ -213,6 +197,6 @@
     im.onerror = () => res();
     im.src = src;
   });
-  const go = () => { drawFields(); balance(); if (host) loadPhoto().then(startHero); };
+  const go = () => { drawFields(); if (host) loadPhoto().then(startHero); };
   (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(go);
 })();

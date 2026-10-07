@@ -233,6 +233,7 @@
       const i = +t.dataset.i;
       tabs.forEach((x, j) => x.setAttribute('aria-selected', String(j === i)));
       panes.forEach((p, j) => { p.hidden = j !== i; if (j !== i) p.querySelector('video')?.pause(); });
+      fig.parentElement.querySelectorAll('.caps > p[data-i]').forEach((c) => { c.hidden = +c.dataset.i !== i; });
       load(panes[i].querySelector('[data-src]'));
     }));
   });

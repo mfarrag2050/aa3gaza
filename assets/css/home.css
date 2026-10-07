@@ -117,6 +117,14 @@ body.home .bar{background:var(--ash);border-bottom-color:var(--dust)}
 .kids-vid p{font-size:14px;line-height:1.7;color:#BDB8B0;margin:10px 0 0}
 .kids .vid-open{background:var(--paper);color:var(--ink)}
 .kids .vid{outline:1px solid #3a3936}
+.kids .vid.multi{outline:0}
+.kids .vitem{outline:1px solid #3a3936}
+.kids .vtabs{border-bottom-color:#3a3936;gap:14px}
+.kids .vtabs button{color:#8f8a82}
+.kids .vtabs button[aria-selected="true"]{color:var(--paper);border-bottom-color:var(--paper)}
+.kids-vid .caps{display:grid}
+.kids-vid .caps p{grid-area:1/1}
+.kids-vid .caps p[hidden]{display:block;visibility:hidden}   /* captions share one cell: switching tabs never changes the height */
 .kids .facts div{border-top-color:#3a3936}
 .kids-foot{font-size:14px;color:#BDB8B0;margin:26px 0 0}
 .kids-foot a{color:var(--paper);text-decoration:underline;text-underline-offset:5px}
@@ -144,7 +152,7 @@ body.home .bar{background:var(--ash);border-bottom-color:var(--dust)}
 
 /* inside an iframe on aa.com.tr that grows to fit the page (host script answered): no viewport-tall hero, no sticky bar */
 .autoh .hero{min-height:720px}
-.framed .bar{display:none}   /* embedded on aa.com.tr: the AA page has its own header, and in-page links cannot scroll it */
+.framed .bar,.framed .foot{display:none}   /* embedded on aa.com.tr: the AA page has its own header, and in-page links cannot scroll it */
 
 /* footer */
 body.home .foot{border-top-color:var(--dust);margin-top:48px}

@@ -1,0 +1,14 @@
+<!-- 3 سنوات من الإبادة — يُلصق في صفحة الأناضول (HTML) -->
+<iframe id="aagaza-frame" src="https://genogaza.pages.dev/" title="3 سنوات من الإبادة" loading="eager"
+  style="display:block;width:100%;height:100vh;border:0;overflow:hidden" allow="fullscreen; picture-in-picture"></iframe>
+<script>
+(function () {
+  var ORIGIN = 'https://genogaza.pages.dev', f = document.getElementById('aagaza-frame');
+  window.addEventListener('message', function (e) {
+    if (e.origin !== ORIGIN || !e.data || e.data.aagaza !== 1) return;
+    if (e.data.type === 'hello') f.contentWindow.postMessage({ aagaza: 'host' }, ORIGIN);
+    if (e.data.type === 'height') f.style.height = e.data.h + 'px';
+    if (e.data.type === 'scroll') window.scrollTo({ top: f.getBoundingClientRect().top + window.pageYOffset + e.data.y - 70, behavior: 'smooth' });
+  });
+})();
+</script>

@@ -1,5 +1,9 @@
 /* 3 سنوات من الإبادة — square fields. One square = one unit, drawn in reading order (right → left). */
 (() => {
+  /* embedded in an aa.com.tr page: report our height so the frame can grow, and ask the parent to scroll for in-page links */
+  const framed = window.self !== window.top;
+  if (framed) document.documentElement.classList.add('framed');
+  const post = (msg) => { try { window.parent.postMessage(Object.assign({ aagaza: 1 }, msg), '*'); } catch (e) {} };
   const root = getComputedStyle(document.documentElement);
   const colour = (v) => (v && v.startsWith('--') ? root.getPropertyValue(v).trim() : v) || '#000';
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -245,6 +249,27 @@
     prev.addEventListener('click', () => strip.scrollBy({ left: step(), behavior: 'smooth' }));
     strip.addEventListener('scroll', sync, { passive: true }); addEventListener('resize', sync); sync();
   });
+
+  if (framed) {
+    // handshake: say hello; only a host page running our embed script answers, then we grow the frame to fit
+    let last = 0, on = false;
+    const report = () => { if (!on) return; const h = Math.ceil(document.documentElement.getBoundingClientRect().height); if (Math.abs(h - last) > 2) { last = h; post({ type: 'height', h }); } };
+    addEventListener('message', (ev) => {
+      if (!ev.data || ev.data.aagaza !== 'host' || on) return;
+      on = true;
+      document.documentElement.classList.add('autoh');
+      if (host && plan) { cancelAnimationFrame(raf); heroStatic(); host.querySelector('[data-count]').textContent = new Intl.NumberFormat('en-US').format(plan.N); }
+      new ResizeObserver(report).observe(document.documentElement); report();
+    });
+    post({ type: 'hello' }); addEventListener('load', () => post({ type: 'hello' }));
+    document.addEventListener('click', (ev) => {        // in-page links: the host page does the scrolling
+      if (!on) return;
+      const a = ev.target.closest('a[href^="#"]'); if (!a) return;
+      const t = document.querySelector(a.getAttribute('href')); if (!t) return;
+      ev.preventDefault();
+      post({ type: 'scroll', y: Math.max(0, t.getBoundingClientRect().top + window.scrollY - 10) });
+    });
+  }
 
   const go = () => { drawFields(); if (host) loadPhoto().then(startHero); };
   (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(go);

@@ -145,10 +145,12 @@ body.home .bar{background:var(--ash);border-bottom-color:var(--dust)}
   padding-bottom:12px;overscroll-behavior-x:contain}
 .gal-i{position:relative;flex:none;margin:0;height:min(68vh,520px);aspect-ratio:573/768;scroll-snap-align:start;background:#cfcbc4}
 .gal-i img{display:block;width:100%;height:100%;object-fit:cover}
+.gal-i.ph{height:360px;aspect-ratio:1024/683}
 .gal-i span{position:absolute;inset-inline-start:10px;font:700 13px/1 var(--kufi);background:var(--ink);color:var(--paper);padding:6px 9px}
 .gal-i .b{top:10px}
 .gal-i .a{top:calc(50% + 10px)}
 .gal-foot{font-size:14px;color:var(--mute);margin:12px 0 0}
+.st-viz{margin-top:32px}
 /* infographics: fixed-height strip, so adding items never changes the page height */
 .chapter.igs{padding:16px 0 0}
 .igal{border-top:1px solid var(--dust);padding:40px 0 48px}
@@ -225,6 +227,7 @@ body.home .foot,body.home .foot span{color:var(--mute)}
   .gal-nav{display:none}
   .autoh .hero{min-height:780px}
   .gal-i{height:auto;width:78vw}
+  .gal-i.ph{height:auto;width:84vw}
   .ig-i .im{height:380px}
   .gal-head p{font-size:15.5px}
 }

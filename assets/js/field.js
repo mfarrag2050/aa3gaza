@@ -201,7 +201,21 @@
   });
   /* reels: load at once on wide screens; on phones only when asked */
   const vids = [...document.querySelectorAll('.vid [data-src]')];
-  const load = (m) => { if (m.dataset.src && !m.src) m.src = m.dataset.src; m.closest('.vid').classList.add('on'); };
+  let xjs = null;
+  const xWidgets = () => xjs || (xjs = new Promise((res) => {
+    const s = document.createElement('script'); s.src = 'https://platform.twitter.com/widgets.js'; s.async = true;
+    s.onload = () => (window.twttr && twttr.ready ? twttr.ready(res) : res()); document.head.appendChild(s);
+  }));
+  const load = (m) => {
+    m.closest('.vid').classList.add('on');
+    if (m.classList.contains('xpost')) {                 // X post: build it with the official widget
+      if (m.dataset.done) return; m.dataset.done = '1';
+      xWidgets().then(() => window.twttr && twttr.widgets.createTweet(m.dataset.src, m, { lang: 'ar', align: 'center', dnt: true })
+        .then((el) => { if (el) m.querySelector(':scope > a')?.remove(); }));
+      return;
+    }
+    if (m.dataset.src && !m.src) m.src = m.dataset.src;
+  };
   if (matchMedia('(min-width: 701px)').matches) vids.forEach(load);
   else matchMedia('(min-width: 701px)').addEventListener('change', (q) => { if (q.matches) vids.forEach(load); });
   document.querySelectorAll('.vid-open').forEach((b) => b.addEventListener('click', () => load(b.parentElement.querySelector('[data-src]'))));

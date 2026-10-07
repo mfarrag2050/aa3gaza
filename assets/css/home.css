@@ -54,6 +54,16 @@ body.home .bar{background:var(--ash);border-bottom-color:var(--dust)}
 .vid.ig iframe{height:100%}
 .vid-open{display:none}
 .vid.sq{aspect-ratio:1/1}
+/* several videos for one story: tabs above, one video at a time */
+.vid.multi{aspect-ratio:auto;background:none}
+.vtabs{display:flex;gap:18px;border-bottom:1px solid var(--dust);margin-bottom:12px}
+.vtabs button{font:700 14px/1 var(--kufi);color:var(--mute);background:none;border:0;border-bottom:3px solid transparent;
+  padding:6px 0 10px;margin-bottom:-1px;cursor:pointer}
+.vtabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+.vitem{aspect-ratio:9/16;background:var(--ink)}
+.vitem.ig{aspect-ratio:auto;height:616px;background:#fff}
+.vitem[hidden]{display:none}
+.vitem video,.vitem iframe{display:block;width:100%;height:100%;border:0;object-fit:cover}
 .viz.clip video{display:block;width:100%;max-width:420px;aspect-ratio:1/1;object-fit:cover;background:var(--ink)}
 /* X (Twitter) post: the widget sizes itself */
 .vid.x{aspect-ratio:auto;background:none}
@@ -139,12 +149,22 @@ body.home .foot,body.home .foot span{color:var(--mute)}
   .kids .facts{margin-top:24px}
   .vid.sq{width:min(100%,300px)!important}
   .vid:not(.on){aspect-ratio:auto!important;height:auto!important;width:auto!important;background:none;border:0}
-  .vid:not(.on) iframe,.vid:not(.on) video,.vid:not(.on) .xpost{display:none}
+  .vid:not(.on) iframe,.vid:not(.on) video,.vid:not(.on) .xpost,.vid.multi:not(.on) .vtabs,.vid.multi:not(.on) .vitem{display:none}
   .vid-open{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);border:0;cursor:pointer;
     font:700 15px/1 var(--kufi);padding:12px 18px 12px 16px}
   .vid-open svg{width:16px;height:16px}
   .vid.on .vid-open{display:none}
 .vid.sq{aspect-ratio:1/1}
+/* several videos for one story: tabs above, one video at a time */
+.vid.multi{aspect-ratio:auto;background:none}
+.vtabs{display:flex;gap:18px;border-bottom:1px solid var(--dust);margin-bottom:12px}
+.vtabs button{font:700 14px/1 var(--kufi);color:var(--mute);background:none;border:0;border-bottom:3px solid transparent;
+  padding:6px 0 10px;margin-bottom:-1px;cursor:pointer}
+.vtabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+.vitem{aspect-ratio:9/16;background:var(--ink)}
+.vitem.ig{aspect-ratio:auto;height:616px;background:#fff}
+.vitem[hidden]{display:none}
+.vitem video,.vitem iframe{display:block;width:100%;height:100%;border:0;object-fit:cover}
 .viz.clip video{display:block;width:100%;max-width:420px;aspect-ratio:1/1;object-fit:cover;background:var(--ink)}
 /* X (Twitter) post: the widget sizes itself */
 .vid.x{aspect-ratio:auto;background:none}

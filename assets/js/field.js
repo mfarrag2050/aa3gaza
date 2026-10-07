@@ -216,9 +216,22 @@
     }
     if (m.dataset.src && !m.src) m.src = m.dataset.src;
   };
-  if (matchMedia('(min-width: 701px)').matches) vids.forEach(load);
-  else matchMedia('(min-width: 701px)').addEventListener('change', (q) => { if (q.matches) vids.forEach(load); });
-  document.querySelectorAll('.vid-open').forEach((b) => b.addEventListener('click', () => load(b.parentElement.querySelector('[data-src]'))));
+  const first = (fig) => fig.querySelector('.vitem:not([hidden]) [data-src]') || fig.querySelector('[data-src]');
+  const figs = [...document.querySelectorAll('.vid')].filter((f) => f.querySelector('[data-src]'));
+  const openAll = () => figs.forEach((f) => load(first(f)));
+  if (matchMedia('(min-width: 701px)').matches) openAll();
+  else matchMedia('(min-width: 701px)').addEventListener('change', (q) => { if (q.matches) openAll(); });
+  document.querySelectorAll('.vid-open').forEach((b) => b.addEventListener('click', () => load(first(b.closest('.vid')))));
+  // tabs: show one video, pause the rest
+  document.querySelectorAll('.vid.multi').forEach((fig) => {
+    const tabs = [...fig.querySelectorAll('.vtabs button')], panes = [...fig.querySelectorAll('.vitem')];
+    tabs.forEach((t) => t.addEventListener('click', () => {
+      const i = +t.dataset.i;
+      tabs.forEach((x, j) => x.setAttribute('aria-selected', String(j === i)));
+      panes.forEach((p, j) => { p.hidden = j !== i; if (j !== i) p.querySelector('video')?.pause(); });
+      load(panes[i].querySelector('[data-src]'));
+    }));
+  });
 
   const go = () => { drawFields(); if (host) loadPhoto().then(startHero); };
   (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(go);

@@ -153,6 +153,11 @@ body.home .bar{background:var(--ash);border-bottom-color:var(--dust)}
 .gal-i .a{top:calc(50% + 10px)}
 .gal-foot{font-size:14px;color:var(--mute);margin:12px 0 0}
 .st-viz{margin-top:32px}
+.sx{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.3fr);column-gap:clamp(28px,3vw,40px);align-items:start}
+.sx h4{font:800 22px/1.4 var(--kufi);margin:14px 0 0}
+.sx .facts{grid-column:2}
+.sx .fsrc{grid-column:2;margin:-6px 0 0}
+.chapter+.chapter{padding-top:40px}
 .gal.long .gal-head h3{font-size:clamp(24px,2.6vw,34px)}
 .credits{border-top:1px solid var(--dust);padding:28px 0 36px}
 .credits p{margin:0 0 6px;font-size:15px;line-height:1.8;color:var(--mute)}
@@ -196,6 +201,7 @@ body.home .foot,body.home .foot span{color:var(--mute)}
   .bares .story+.story{border-top:1px solid var(--dust)}
   .kids-head{grid-template-columns:1fr;gap:12px}
   .kids .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sx{grid-template-columns:1fr}.sx .facts,.sx .fsrc{grid-column:1}.sx h4{margin:0 0 6px}
   .kids-body{grid-template-columns:1fr;gap:28px}
   .kids-vid{max-width:300px}
 }

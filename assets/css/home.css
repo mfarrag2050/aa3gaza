@@ -42,7 +42,8 @@ body.home .bar{background:var(--ash);border-bottom-color:var(--dust)}
 .bares .story{grid-template-columns:minmax(0,1fr) 326px;grid-template-areas:"t v";border-top:0}
 .story.nov{grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-areas:"t s"}
 .bares .story.nov{grid-template-columns:1fr;grid-template-areas:"t"}
-.bares .story:not(.nov){grid-column:1/-1}   /* a story with video takes the full row; text-only stories pair up */
+.bares .story:not(.nov){grid-column:1/-1}
+.bares.b3{grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3.5vw,56px)}   /* three text-only stories share one row */   /* a story with video takes the full row; text-only stories pair up */
 
 /* vertical reels */
 .vid{margin:0;aspect-ratio:9/16;width:100%;background:var(--ink)}
@@ -191,7 +192,7 @@ body.home .foot,body.home .foot span{color:var(--mute)}
 @media (max-width:900px){
   .story{grid-template-columns:minmax(0,1fr) 326px;grid-template-areas:"t v" "s s";gap:34px 32px}
   .story.nov{grid-template-columns:1fr;grid-template-areas:"t" "s"}
-  .bares{grid-template-columns:1fr;gap:0}
+  .bares,.bares.b3{grid-template-columns:1fr;gap:0}
   .bares .story+.story{border-top:1px solid var(--dust)}
   .kids-head{grid-template-columns:1fr;gap:12px}
   .kids .facts{grid-template-columns:repeat(2,minmax(0,1fr))}

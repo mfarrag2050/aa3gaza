@@ -252,3 +252,47 @@ body.home .foot,body.home .foot span{color:var(--mute)}
   .ig-i .im{height:380px}
   .gal-head p{font-size:15.5px}
 }
+/* horizontal bars (HTML, one shared scale) */
+.bars ol{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.bars li{display:grid;grid-template-columns:minmax(7.5em,auto) 1fr auto;align-items:center;gap:12px}
+.bars li span{font-size:15px;line-height:1.5}
+.bars li i{display:block;height:14px}
+.bars li s{display:block;height:100%;background:var(--ink)}
+.bars li b{font:800 17px/1 var(--kufi);white-space:nowrap;min-width:2ch}
+.bars .key{font-size:13px;color:var(--mute);margin:8px 0 0}
+/* name lists */
+.ppl h4{font:800 19px/1.4 var(--kufi);margin:0 0 6px}
+.ppl ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));column-gap:28px}
+.ppl li{border-top:1px solid var(--dust);padding:10px 0 12px}
+.ppl b{display:block;font:800 16px/1.5 var(--kufi)}
+.ppl span{display:block;font-size:14.5px;line-height:1.65;color:var(--ink)}
+.st-viz+.st-viz{margin-top:28px}
+/* video tabs stay on one line */
+.vtabs{flex-wrap:nowrap;gap:0 14px}
+.vtabs button{white-space:nowrap;flex:none}
+.vid.multi .vtabs:has(button:nth-child(4)) button{font-size:13px}
+.vid.multi .vtabs:has(button:nth-child(4)){gap:0 11px}
+.story>.sx-x,.story>.sx-u,.story>.sx-w{display:block}
+.story.wx{grid-template-areas:"t v s" "t x x";grid-template-rows:auto 1fr}
+.story.wu{grid-template-areas:"t v s" "t u s";grid-template-rows:auto 1fr}
+.story>.sx-x{grid-area:x;border-top:2px solid var(--ink);padding-top:14px}
+.story>.sx-u{grid-area:u}
+.story>.sx-w{grid-column:1/-1}
+.sx-x h4{margin:0 0 4px;font-size:19px}
+.sx-x .facts{grid-template-columns:repeat(3,minmax(0,1fr));gap:0 28px}
+.sx-x .facts div{border-top:0;padding:8px 0 10px}
+.sx-x .fsrc{margin:0}
+.sx-u .ppl ul{grid-template-columns:1fr}
+.ppl.wide{border-top:2px solid var(--ink);padding-top:14px}
+.ppl.wide ul{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:900px){
+  .story.wx{grid-template-areas:"t v" "s s" "x x";grid-template-rows:auto}
+  .story.wu{grid-template-areas:"t v" "t u" "s s";grid-template-rows:auto 1fr auto}
+  .ppl.wide ul{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:700px){
+  .story.wx{grid-template-areas:"t" "v" "s" "x"}
+  .story.wu{grid-template-areas:"t" "v" "u" "s";grid-template-rows:auto}
+  .sx-x .facts,.ppl.wide ul{grid-template-columns:1fr}
+}
+.sv>.facts+.fsrc{margin-top:-34px}
